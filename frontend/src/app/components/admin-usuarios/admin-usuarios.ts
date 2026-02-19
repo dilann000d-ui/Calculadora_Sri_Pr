@@ -118,6 +118,12 @@ export class AdminUsuarios implements OnInit, OnDestroy {
           }
         },
         error: (err) => {
+          if (err?.status === 401 || err?.status === 403) {
+            this.error = 'No autorizado para gestionar usuarios. Inicia sesion como admin.';
+            this.users = [];
+            return;
+          }
+
           this.error = err.error?.message || 'Error al cargar usuarios';
           this.users = [];
           this.scheduleRetry();

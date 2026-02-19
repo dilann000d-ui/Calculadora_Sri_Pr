@@ -1,76 +1,272 @@
-.bg-soft-gray { background-color: #f8fafc; }
-.fw-extrabold { font-weight: 800; }
+.report-v2 {
+  --bg-main: #f4f6f1;
+  --ink: #1f2937;
+  --ink-soft: #5b6472;
+  --a: #113f67;
+  --b: #34699a;
+  --c: #58a0c8;
+  --d: #f29f58;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 10% 0%, #e7f6ff 0%, transparent 28%),
+    radial-gradient(circle at 100% 20%, #fff2d8 0%, transparent 32%),
+    linear-gradient(150deg, #f8faf5, var(--bg-main));
+  color: var(--ink);
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
 
-/* Tarjetas KPI */
-.kpi-card {
-  background: white;
-  padding: 24px;
+.hero-band {
+  max-width: 1250px;
+  margin: 0 auto 1rem;
+  padding: 1.2rem;
   border-radius: 20px;
-  transition: transform 0.3s ease;
-}
-
-.kpi-card:hover {
-  transform: translateY(-5px);
-}
-
-.kpi-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  background: #0f172a;
+  color: #f8fbff;
   display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
 }
 
-.bg-soft-primary { background: #eff6ff; color: #3b82f6; }
-.bg-soft-success { background: #f0fdf4; color: #22c55e; }
-.bg-soft-danger { background: #fef2f2; color: #ef4444; }
+.eyebrow {
+  margin: 0;
+  color: #9dd8ff;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+}
 
-.border-highlight-danger { border-bottom: 4px solid #ef4444 !important; }
+.hero-left h1 {
+  margin: 0.2rem 0;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  font-weight: 800;
+}
 
-/* Tabla Estilo Moderno */
-.data-card {
-  background: white;
-  border-radius: 24px;
+.hero-copy {
+  margin: 0;
+  color: #d6deef;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn-refresh,
+.btn-print {
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+.btn-refresh {
+  color: #fff;
+  background: linear-gradient(120deg, #2a78c3, #58a0c8);
+}
+
+.btn-print {
+  color: #0f172a;
+  background: linear-gradient(120deg, #ffd79a, #f29f58);
+}
+
+.error-strip {
+  max-width: 1250px;
+  margin: 0 auto 1rem;
+  border: 1px solid #f4a3a3;
+  background: #fff1f1;
+  color: #8d1d1d;
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.loading-box {
+  max-width: 1250px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #d8e6f2;
+  min-height: 160px;
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+}
+
+.kpi-grid {
+  max-width: 1250px;
+  margin: 0 auto 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.kpi-card {
+  border-radius: 18px;
+  padding: 1rem;
+  color: #ffffff;
+  display: grid;
+  gap: 0.2rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card-a { background: linear-gradient(130deg, #113f67, #34699a); }
+.card-b { background: linear-gradient(130deg, #2f4858, #4f7c8a); }
+.card-c { background: linear-gradient(130deg, #6b3f2a, #b56b3d); }
+.card-d { background: linear-gradient(130deg, #3f4f2a, #799a34); }
+
+.kpi-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.kpi-value {
+  font-size: 1.65rem;
+  line-height: 1.1;
+}
+
+.table-shell {
+  max-width: 1250px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #dce8f1;
   overflow: hidden;
 }
 
-.table-custom thead th {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  color: #64748b;
+.table-header {
+  background: linear-gradient(90deg, #edf5fb, #fff7e9);
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.pill {
+  background: #0f172a;
+  color: #fff;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.report-table thead th {
+  background: #f7fbff;
+  color: #52606d;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 1rem;
+  padding: 0.85rem;
+  border-bottom: 1px solid #e4edf4;
 }
 
-.table-custom tbody td {
-  padding: 1.2rem 1rem;
-  border-bottom: 1px solid #f1f5f9;
-  color: #334155;
+.report-table tbody td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #edf2f7;
 }
 
-/* Badge con punto (Dot style) */
-.badge-dot {
-  padding: 4px 12px;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: #f1f5f9;
+.mono {
+  font-family: "Roboto Mono", monospace;
 }
 
-/* Banner de información */
-.info-banner {
-  background: white;
-  border-radius: 18px;
-  border-left: 5px solid #0dcaf0;
+.chip {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.75rem;
 }
 
-/* Ajustes de Impresión */
+.bg-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.bg-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.bg-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.bg-info {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.bg-primary {
+  background: #e0f2fe;
+  color: #0c4a6e;
+}
+
+.bg-secondary {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.total-cell {
+  font-weight: 800;
+  color: #113f67;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--ink-soft);
+}
+
+.empty-state i {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .hero-band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .btn-refresh,
+  .btn-print {
+    flex: 1;
+  }
+}
+
 @media print {
-  .btn, .navbar, .info-banner { display: none !important; }
-  .main-layout { background: white; padding: 0; }
-  .kpi-card, .data-card { box-shadow: none !important; border: 1px solid #eee; }
+  .hero-actions,
+  .btn,
+  app-menu,
+  .footer-modern {
+    display: none !important;
+  }
+
+  .report-v2 {
+    background: #fff;
+    padding: 0;
+  }
+
+  .hero-band,
+  .kpi-card,
+  .table-shell {
+    box-shadow: none !important;
+  }
 }

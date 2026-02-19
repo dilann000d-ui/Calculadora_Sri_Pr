@@ -32,7 +32,7 @@ import { Register } from './components/register/register';
     AdminEstadisticas,
     AdminUsuarios,
     Login,
-    Register,
+    Register
   ],
   imports: [
     BrowserModule,

@@ -8,9 +8,9 @@ import { AuthService } from './auth';
 @Injectable({ providedIn: 'root' })
 export class GastoService {
   // 1. CAMBIO: Usa la IP de tu servidor de AWS
-  // private API_URL = 'http://18.222.12.17:3000/api/facturas';
+  // private API_URL = 'http://13.59.191.40:3000/api/facturas';
   // Usa la ruta relativa para desarrollo local con proxy:
-  private API_URL = '/api/facturas';
+  private API_URL = 'http://13.59.191.40:3000/api/facturas';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
@@ -52,13 +52,13 @@ export class GastoService {
   obtenerMisFacturas(): Observable<any> {
     const token = this.auth.getToken();
     const headers = token ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) } : {};
-    return this.http.get('/api/facturas/mis-facturas', headers);
+    return this.http.get(`${this.API_URL}/mis-facturas`, headers);
   }
 
   // Obtener todas las facturas (vista admin)
   obtenerFacturasAdmin(): Observable<any> {
     const token = this.auth.getToken();
     const headers = token ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) } : {};
-    return this.http.get('/api/facturas', headers);
+    return this.http.get(this.API_URL, headers);
   }
 }

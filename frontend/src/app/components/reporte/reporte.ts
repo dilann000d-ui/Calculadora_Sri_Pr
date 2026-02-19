@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GastoService } from '../../services/gasto';
 import { Gasto } from '../../models/gasto';
 import { AuthService } from '../../services/auth';
@@ -11,14 +11,22 @@ import { AuthService } from '../../services/auth';
 })
 export class Reporte implements OnInit {
   gastos: Gasto[] = [];
+  cargando = false;
+  errorCarga = '';
 
-  constructor(private gastoService: GastoService, private auth: AuthService) {}
+  constructor(
+    private gastoService: GastoService,
+    public auth: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.cargarReporte();
   }
 
   cargarReporte(): void {
+    this.cargando = true;
+    this.errorCarga = '';
     const source$ = this.auth.isAdmin()
       ? this.gastoService.obtenerFacturasAdmin()
       : this.gastoService.obtenerMisFacturas();
@@ -33,11 +41,20 @@ export class Reporte implements OnInit {
           valor: f.valor,
           impuestoCalculado: f.impuesto
         }));
+        setTimeout(() => {
+          this.cargando = false;
+          this.cdr.detectChanges();
+        }, 0);
         console.log(`Gastos cargados (${this.auth.isAdmin() ? 'admin' : 'usuario'}):`, this.gastos);
       },
       error: (err) => {
         console.error('Error al cargar reporte:', err);
+        this.errorCarga = err?.error?.message || 'No se pudo cargar el reporte.';
         this.gastos = [];
+        setTimeout(() => {
+          this.cargando = false;
+          this.cdr.detectChanges();
+        }, 0);
       }
     });
   }
@@ -51,6 +68,13 @@ export class Reporte implements OnInit {
       const impuesto = gasto.impuestoCalculado || (gasto.valor * 0.12);
       return total + impuesto;
     }, 0);
+  }
+
+  calcularPromedio(): number {
+    if (!this.gastos.length) {
+      return 0;
+    }
+    return this.calcularTotal() / this.gastos.length;
   }
 
   obtenerColorTipo(tipo: string): string {

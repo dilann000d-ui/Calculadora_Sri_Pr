@@ -651,3 +651,134 @@
     background-color: rgba(102, 126, 234, 0.1);
   }
 }
+/* ===== Global Layout (override) ===== */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+}
+
+.content-animate {
+  animation: pageRise 0.45s ease;
+}
+
+@keyframes pageRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Footer v2 ===== */
+.footer-modern {
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+  background: linear-gradient(145deg, #111827, #0b1220 55%, #1e293b);
+  color: #e5e7eb;
+  border-top: 4px solid #22d3ee;
+  padding: 2.2rem 0 0.8rem;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.footer-orbit {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -120px;
+  top: -210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.25), transparent 60%);
+  pointer-events: none;
+}
+
+.footer-layout {
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.footer-column h5 {
+  margin: 0.2rem 0 0.35rem;
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.footer-kicker {
+  margin: 0;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: #67e8f9;
+}
+
+.footer-text {
+  margin: 0;
+  color: #94a3b8;
+  max-width: 420px;
+}
+
+.footer-column h6 {
+  margin: 0 0 0.5rem;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.footer-column a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-bottom: 0.35rem;
+}
+
+.footer-column a:hover {
+  color: #67e8f9;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+}
+
+.footer-bottom {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 0.7rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22d3ee;
+}
+
+@media (max-width: 900px) {
+  .footer-layout {
+    grid-template-columns: 1fr;
+  }
+}

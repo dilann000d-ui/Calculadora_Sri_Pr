@@ -1,6 +1,8 @@
-/* Limitar el ancho máximo para que no se estire todo */
+@import "tailwindcss";
+
+/* Limitar el ancho maximo para que no se estire todo */
 .container, .container-lg {
-    max-width: 1140px !important; /* Estándar profesional */
+    max-width: 1140px !important;
 }
 
 /* Espaciado para el Navbar Fijo */
@@ -9,10 +11,10 @@ body {
     background-color: #f4f7f6;
 }
 
-/* Arreglo para las imágenes gigantes */
+/* Arreglo para las imagenes gigantes */
 .category-img {
     width: 100%;
-    height: 250px; /* Altura fija para evitar saltos */
+    height: 250px;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
 }

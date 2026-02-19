@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class EstadisticasService {
-  private apiUrl = '/api/facturas/estadisticas';
+  private apiUrl = 'http://13.59.191.40:3000/api/facturas/estadisticas';
 
   constructor(private http: HttpClient) {}
 

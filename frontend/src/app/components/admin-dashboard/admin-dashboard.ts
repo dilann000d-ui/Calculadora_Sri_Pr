@@ -15,15 +15,18 @@ import { AuthService } from '../../services/auth';
   styleUrls: ['./admin-dashboard.css']
 })
 export class AdminDashboardComponent implements OnInit, OnDestroy {
+  private readonly apiBase = 'http://13.59.191.40:3000/api';
   resumen: any = {};
   porGasto: any[] = [];
   porDia: any[] = [];
   usuarios = 0;
   loading = true;
   error = '';
+  lastUpdate: Date | null = null;
 
   private loadingGuard: any = null;
   private retryTimer: any = null;
+  private refreshTimer: any = null;
   private retryCount = 0;
   private readonly maxRetries = 4;
   private dashboardRequestSub: Subscription | null = null;
@@ -36,11 +39,25 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   lineChartOptions: ChartConfiguration<'line'>['options'] = { responsive: true };
   lineChartType: 'line' = 'line';
 
+  doughnutChartData: ChartConfiguration<'doughnut'>['data'] = { labels: [], datasets: [] };
+  doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom' }
+    }
+  };
+  doughnutChartType: 'doughnut' = 'doughnut';
+
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   ngOnInit() {
     this.retryCount = 0;
     this.cargarEstadisticas();
+    this.refreshTimer = setInterval(() => {
+      if (!this.loading) {
+        this.cargarEstadisticas();
+      }
+    }, 30000);
   }
 
   ngOnDestroy() {
@@ -49,6 +66,9 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     }
     if (this.retryTimer) {
       clearTimeout(this.retryTimer);
+    }
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer);
     }
     this.dashboardRequestSub?.unsubscribe();
   }
@@ -107,17 +127,17 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
     this.dashboardRequestSub?.unsubscribe();
     this.dashboardRequestSub = forkJoin({
-      gastoRes: this.http.get('/api/facturas/estadisticas/gastos', { headers, params }).pipe(
+      gastoRes: this.http.get(`${this.apiBase}/facturas/estadisticas/gastos`, { headers, params }).pipe(
         timeout(10000),
-        catchError(() => of({ stats: [] }))
+        catchError((err) => of({ stats: [], _error: true, status: err?.status || 500 }))
       ),
-      diaRes: this.http.get('/api/facturas/estadisticas/por-dia', { headers, params }).pipe(
+      diaRes: this.http.get(`${this.apiBase}/facturas/estadisticas/por-dia`, { headers, params }).pipe(
         timeout(10000),
-        catchError(() => of({ stats: [] }))
+        catchError((err) => of({ stats: [], _error: true, status: err?.status || 500 }))
       ),
-      usersRes: this.http.get<any[] | { users: any[] }>('/api/users', { headers, params }).pipe(
+      usersRes: this.http.get<any[] | { users: any[] }>(`${this.apiBase}/users`, { headers, params }).pipe(
         timeout(10000),
-        catchError(() => of([]))
+        catchError((err) => of({ users: [], _error: true, status: err?.status || 500 }))
       )
     })
       .pipe(finalize(() => {
@@ -173,6 +193,25 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
             ]
           };
 
+          this.doughnutChartData = {
+            labels: this.porGasto.map((g: any) => g._id),
+            datasets: [
+              {
+                data: this.porGasto.map((g: any) => g.totalFacturas),
+                label: 'Facturas por tipo',
+                backgroundColor: ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#6366f1', '#14b8a6']
+              }
+            ]
+          };
+
+          this.lastUpdate = new Date();
+
+          const unauthorized = [gastoRes?.status, diaRes?.status, (usersRes as any)?.status].some((s) => s === 401 || s === 403);
+          if (unauthorized) {
+            this.error = 'No autorizado para ver dashboard admin. Inicia sesion con un usuario admin.';
+            return;
+          }
+
           if (this.usuarios === 0) {
             this.error = 'No se pudieron cargar las estadisticas. Reintentando...';
             this.scheduleRetry();
@@ -180,8 +219,8 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
             this.retryCount = 0;
           }
         },
-        error: () => {
-          this.error = 'Error al cargar el dashboard.';
+        error: (err) => {
+          this.error = err?.error?.message || 'Error al cargar el dashboard.';
           this.scheduleRetry();
         }
       });

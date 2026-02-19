@@ -26,11 +26,11 @@ export class Informacion implements OnInit {
     this.gastos = [
       { 
         "nombre": "Vivienda", 
-        "imagenUrl": "../vivienda.png" 
+        "imagenUrl": "../vivienda.jpg" 
       }, 
       { 
         "nombre": "Salud", 
-        "imagenUrl": "../salud.png"
+        "imagenUrl": "../salud.jpg"
       },
       { 
         "nombre": "Educación", 
