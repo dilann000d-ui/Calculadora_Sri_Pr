@@ -1,0 +1,118 @@
+<div class="main-layout">
+  <section class="hero-glass mb-5">
+    <div class="container-fluid" style="max-width: 1400px; margin: 0 auto; padding: 0 3rem;">
+      <div class="py-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">NUEVA ACTUALIZACIÓN 2024</span>
+            <h1 class="display-3 fw-extrabold text-white mb-3">
+              Calculadora <span class="text-warning">SRI</span>
+            </h1>
+            <p class="text-white-50 fs-5 mb-4">
+              Gestiona tus gastos personales con precisión. Nuestra herramienta te ayuda a optimizar tus deducibles de forma segura y rápida.
+            </p>
+            <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+              <a routerLink="/registro" class="btn btn-warning btn-lg px-4 py-3 rounded-pill fw-bold shadow">
+                <i class="bi bi-plus-circle me-2"></i> Comenzar Registro
+            </a>
+            <button class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill">
+              Ver Guía SRI
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block text-center">
+          <div class="hero-icon-blob">
+            <i class="bi bi-pie-chart-fill text-white shadow-lg"></i>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container content-wrapper">
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <div class="info-card h-100">
+          <div class="card-body">
+            <div class="icon-box bg-soft-success mb-3">
+              <i class="bi bi-bank text-success"></i>
+            </div>
+            <h4>Impuesto a la Renta</h4>
+            <p class="text-muted">Tributo directo sobre tus ingresos anuales. Se calcula tras aplicar tus deducciones permitidas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card h-100">
+          <div class="card-body">
+            <div class="icon-box bg-soft-info mb-3">
+              <i class="bi bi-receipt text-info"></i>
+            </div>
+            <h4>Gastos Deducibles</h4>
+            <p class="text-muted">Incluye Vivienda, Salud, Educación y más. Estos reducen la base imponible de tu impuesto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="data-section p-4 p-md-5 mb-5 shadow-lg">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 fw-bold mb-0">Listado de Gastos</h2>
+        <span class="badge bg-primary-soft text-primary px-3 py-2">{{ gastosDeducibles.length }} Registros</span>
+      </div>
+
+      <div *ngIf="gastosDeducibles.length === 0" class="empty-state text-center py-5">
+        <img src="assets/empty.svg" alt="No data" class="mb-3" style="width: 120px; opacity: 0.5;">
+        <p class="text-muted">No hay gastos registrados aún.</p>
+        <a routerLink="/registro" class="btn btn-primary rounded-pill">Agregar primer gasto</a>
+      </div>
+
+      <div *ngIf="gastosDeducibles.length > 0" class="table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>RUC del Establecimiento</th>
+              <th>Categoría</th>
+              <th class="text-end">Monto</th>
+              <th class="text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let gasto of gastosDeducibles">
+              <td class="text-muted">#{{ gasto.id }}</td>
+              <td><span class="fw-semibold">{{ gasto.ruc }}</span></td>
+              <td>
+                <span class="category-badge" [attr.data-type]="gasto.tipoGasto">
+                  {{ gasto.tipoGasto }}
+                </span>
+              </td>
+              <td class="text-end fw-bold text-dark">${{ gasto.valor.toFixed(2) }}</td>
+              <td class="text-center">
+                <button class="btn btn-icon-delete" (click)="eliminarGasto(gasto.id)">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary-footer mt-4 pt-4 border-top">
+        <div class="row justify-content-end">
+          <div class="col-md-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted">Subtotal:</span>
+              <span class="fw-bold">${{ (calcularTotalGastos() * 0.88).toFixed(2) }}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="h5 fw-bold mb-0">Total Deducible:</span>
+              <span class="h4 fw-extrabold text-primary mb-0">${{ calcularTotalGastos().toFixed(2) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

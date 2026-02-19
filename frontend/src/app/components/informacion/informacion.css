@@ -1,0 +1,152 @@
+/* Línea decorativa bajo el título */
+.header-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  border-radius: 10px;
+}
+
+/* Tarjeta Estilizada */
+.category-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Imagen de Categoría */
+.card-image-wrapper {
+  position: relative;
+  width: 384px;
+  height: 384px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-img {
+  width: auto;
+  height: auto;
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: contain;
+  background: transparent;
+  transition: transform 0.6s ease;
+}
+
+.category-card:hover .category-img {
+  transform: scale(1.1);
+}
+
+.category-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.badge-glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card-body {
+  padding: 1rem !important;
+}
+
+.card-body h5 {
+  font-size: 0.95rem !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.card-body p {
+  font-size: 0.8rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+/* Botón de Borrar Minimalista */
+.btn-delete-minimal {
+  background: #fff5f5;
+  color: #ff6b6b;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+
+.btn-delete-minimal:hover {
+  background: #ff6b6b;
+  color: white;
+}
+
+/* Botón Moderno */
+.btn-primary-modern {
+  background: #f0f4ff;
+  color: #4e54c8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+}
+
+.btn-primary-modern:hover {
+  background: #4e54c8;
+  color: white;
+}
+
+/* Expansión Suave de Detalles */
+.details-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s;
+  opacity: 0;
+}
+
+.details-content.expanded {
+  max-height: 150px; /* Ajustar según contenido */
+  opacity: 1;
+}
+
+.border-dashed {
+  border-top-style: dashed !important;
+  border-top-width: 2px !important;
+}
+
+.tracking-widest { 
+  letter-spacing: 0.15em; 
+}
+
+/* Centralizar y espaciar contenido */
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 384px);
+  gap: 3rem;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.col-4 {
+  width: 384px;
+  margin: 0 auto;
+}

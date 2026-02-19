@@ -1,0 +1,67 @@
+﻿<div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem;">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7 col-xl-5">
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden auth-card">
+        <div class="auth-header text-center text-white p-4">
+          <div class="auth-icon mx-auto mb-3">
+            <i class="bi bi-shield-lock-fill"></i>
+          </div>
+          <h2 class="fw-bold mb-1">Iniciar Sesion</h2>
+          <p class="mb-0 opacity-75">Accede a tu panel de facturacion</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5 bg-white">
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+            <div class="mb-3">
+              <label for="username" class="form-label fw-semibold">Usuario</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                <input
+                  id="username"
+                  name="username"
+                  [(ngModel)]="username"
+                  required
+                  class="form-control"
+                  autocomplete="username"
+                  placeholder="Ingresa tu usuario"
+                />
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label fw-semibold">Contrasena</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  [(ngModel)]="password"
+                  required
+                  class="form-control"
+                  autocomplete="current-password"
+                  placeholder="Ingresa tu contrasena"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" [disabled]="loginLoading || loginForm.invalid">
+              <span *ngIf="loginLoading"><i class="bi bi-arrow-repeat spin me-2"></i>Iniciando...</span>
+              <span *ngIf="!loginLoading">Entrar</span>
+            </button>
+
+            <div *ngIf="loginLoading" class="alert alert-info mt-3 mb-0">
+              <i class="bi bi-hourglass-split me-2"></i>Procesando solicitud...
+            </div>
+            <div *ngIf="loginError" class="alert alert-danger mt-3 mb-0">{{loginError}}</div>
+          </form>
+
+          <div class="text-center mt-4 pt-3 border-top">
+            <span class="text-muted">No tienes cuenta?</span>
+            <a routerLink="/register" class="fw-semibold text-decoration-none ms-1">Registrate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

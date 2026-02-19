@@ -1,0 +1,63 @@
+<div class="main-layout bg-light-subtle">
+  <div class="container-fluid" style="max-width: 1400px; margin: 0 auto; padding: 3rem;">
+    <div class="text-center mb-5 pb-3">
+      <span class="text-primary fw-bold text-uppercase tracking-widest small">Guía Informativa</span>
+      <h1 class="display-5 fw-extrabold text-dark mt-2">Categorías de Gastos</h1>
+      <div class="header-line mx-auto"></div>
+      <p class="lead text-muted mt-3">Conoce los límites y beneficios según la normativa vigente del SRI</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-4" *ngFor="let item of gastos">
+        <div class="category-card" [class.is-active]="gastoSeleccionado === item.nombre">
+          <div class="card-image-wrapper">
+            <img [src]="item.imagenUrl" [alt]="item.nombre" class="category-img">
+            <div class="category-overlay">
+              <span class="badge-glass">SRI 2024</span>
+            </div>
+          </div>
+          
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h5 class="fw-bold text-dark mb-1">{{item.nombre}}</h5>
+                <span class="text-primary small fw-semibold">Gasto Personal</span>
+              </div>
+              <button class="btn-delete-minimal" (click)="borrarGasto(item.nombre)" title="Eliminar categoría">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+            <p class="text-secondary small mb-4">
+              Asegúrate de que tus facturas de <strong>{{item.nombre}}</strong> tengan tus datos correctos para la deducción anual.
+            </p>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary-modern flex-grow-1" (click)="mostrarOcultarInfo(item.nombre)">
+                <i class="bi" [ngClass]="gastoSeleccionado === item.nombre ? 'bi-chevron-up' : 'bi-info-circle-fill'"></i>
+                {{ gastoSeleccionado === item.nombre ? 'Ocultar Info' : 'Ver Detalles' }}
+              </button>
+            </div>
+
+            <div class="details-content" [class.expanded]="gastoSeleccionado === item.nombre">
+              <div class="pt-3 mt-3 border-top border-dashed">
+                <h6 class="fw-bold small text-dark mb-2">INCLUYE:</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="d-flex align-items-center mb-2 small" *ngIf="item.nombre === 'Vivienda'">
+                    <i class="bi bi-house-heart text-success me-2"></i> Arriendos, hipotecas y servicios.
+                  </li>
+                  <li class="d-flex align-items-center mb-2 small" *ngIf="item.nombre === 'Salud'">
+                    <i class="bi bi-heart-pulse text-danger me-2"></i> Consultas, medicinas y seguros.
+                  </li>
+                  <li class="d-flex align-items-center mb-2 small" *ngIf="item.nombre === 'Educación'">
+                    <i class="bi bi-book text-info me-2"></i> Pensiones, útiles y capacitación.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

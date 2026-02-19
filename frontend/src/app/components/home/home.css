@@ -1,0 +1,102 @@
+/* Hero con Glassmorphism */
+.hero-glass {
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+  padding: 80px 0;
+  border-radius: 0 0 50px 50px; /* Curva elegante al final */
+}
+
+.hero-icon-blob {
+  font-size: 8rem;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Tarjetas de Información */
+.info-card {
+  background: white;
+  border-radius: 20px;
+  border: none;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.info-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.icon-box {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 1.5rem;
+}
+
+/* Tabla Estilizada */
+.data-section {
+  background: white;
+  border-radius: 30px;
+}
+
+.custom-table {
+  vertical-align: middle;
+}
+
+.custom-table thead th {
+  background: #f8fafc;
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  padding: 1.2rem;
+  border: none;
+}
+
+.custom-table tbody td {
+  padding: 1.2rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Badges de Categoría Personalizados */
+.category-badge {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.category-badge[data-type="Vivienda"] { background: #dcfce7; color: #166534; }
+.category-badge[data-type="Salud"] { background: #fee2e2; color: #991b1b; }
+.category-badge[data-type="Alimentación"] { background: #fef9c3; color: #854d0e; }
+.category-badge[data-type="Educación"] { background: #e0e7ff; color: #3730a3; }
+
+/* Botón de eliminar sutil */
+.btn-icon-delete {
+  background: #fff1f2;
+  color: #e11d48;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.btn-icon-delete:hover {
+  background: #e11d48;
+  color: white;
+}
+
+/* Utilidades de Texto */
+.fw-extrabold { font-weight: 800; }
+.bg-primary-soft { background: #eef2ff; }
+.bg-soft-success { background: #f0fdf4; }
+.bg-soft-info { background: #f0f9ff; }

@@ -1,0 +1,56 @@
+﻿<div class="container-fluid" style="max-width: 1400px; margin: 0 auto; padding: 2rem 3rem;">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-8">
+      <h2 class="fw-bold text-dark"><i class="bi bi-people-fill me-2"></i>Gestion de Usuarios</h2>
+      <p class="text-muted mb-0">Editar informacion de usuarios y eliminar cuentas.</p>
+    </div>
+    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+      <button class="btn btn-success shadow-sm px-4" (click)="refreshUsers()">
+        <i class="bi bi-arrow-clockwise me-2"></i>Recargar
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">Cargando usuarios...</div>
+  <div *ngIf="!loading && users.length === 0 && !error" class="alert alert-warning">No hay usuarios para mostrar.</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="card border-0 shadow-sm rounded-4 overflow-hidden" *ngIf="!loading && users.length > 0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">Usuario</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th class="pe-4">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td class="ps-4" style="min-width: 220px;">
+              <input [(ngModel)]="user.username" type="text" class="form-control" />
+            </td>
+            <td style="min-width: 260px;">
+              <input [(ngModel)]="user.email" type="email" class="form-control" />
+            </td>
+            <td style="min-width: 140px;">
+              <select [(ngModel)]="user.role" class="form-select">
+                <option value="user">Usuario</option>
+                <option value="admin">Admin</option>
+              </select>
+            </td>
+            <td class="pe-4" style="min-width: 220px;">
+              <button class="btn btn-primary me-2" [disabled]="savingUserId === user._id" (click)="updateUser(user)">
+                {{ savingUserId === user._id ? 'Guardando...' : 'Guardar' }}
+              </button>
+              <button class="btn btn-danger" [disabled]="deletingUserId === user._id" (click)="deleteUser(user)">
+                {{ deletingUserId === user._id ? 'Eliminando...' : 'Eliminar' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,185 @@
+/* Layout Principal */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+}
+
+/* Header Estilizado */
+.app-header {
+  padding: 2rem 0;
+  color: white;
+}
+
+.header-title {
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: 2.2rem;
+}
+
+/* Contenedor de Contenido */
+.content-container {
+  flex: 1; /* Esto empuja el footer hacia abajo */
+  padding-bottom: 3rem;
+}
+
+/* Tarjeta Estilo Apple/Moderno */
+.custom-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px; /* Bordes bien redondeados */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Inputs Refinados */
+.custom-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.custom-input, .custom-input-group .form-control {
+  border: 1.5px solid #e2e8f0;
+  padding: 0.8rem 1rem;
+  border-radius: 12px !important;
+  transition: all 0.2s;
+}
+
+.custom-input:focus {
+  border-color: #4e54c8;
+  box-shadow: 0 0 0 4px rgba(78, 84, 200, 0.1);
+}
+
+/* Botón con Degradado */
+.btn-primary-gradient {
+  background: linear-gradient(to right, #4e54c8, #764ba2);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.btn-primary-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(78, 84, 200, 0.3);
+}
+
+/* Vista Previa */
+.preview-box {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px dashed #cbd5e1;
+}
+
+/* Footer */
+.app-footer {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* Badges y utilidades */
+.bg-soft-primary {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+/* Notificación de Éxito Animada */
+.alert-success-notification {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+  animation: slideInDown 0.5s ease-out, fadeIn 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert-success-notification .success-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  z-index: 1;
+  position: relative;
+}
+
+.alert-success-notification .success-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  animation: scaleIn 0.5s ease-out 0.1s both;
+}
+
+.alert-success-notification .success-text {
+  flex: 1;
+}
+
+.alert-success-notification .success-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.alert-success-notification .success-message {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* Barra de progreso animada */
+.progress-bar-success {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  animation: slideOut 4s ease-in-out forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

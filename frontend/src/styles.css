@@ -1,0 +1,45 @@
+/* Limitar el ancho máximo para que no se estire todo */
+.container, .container-lg {
+    max-width: 1140px !important; /* Estándar profesional */
+}
+
+/* Espaciado para el Navbar Fijo */
+body {
+    padding-top: 0;
+    background-color: #f4f7f6;
+}
+
+/* Arreglo para las imágenes gigantes */
+.category-img {
+    width: 100%;
+    height: 250px; /* Altura fija para evitar saltos */
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Estilo de los KPIs */
+.kpi-card {
+    border-radius: 18px;
+    transition: transform 0.2s;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+}
+
+.bg-primary-soft { background-color: #e7f0ff; }
+
+/* Tabla limpia */
+.table thead th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    border: none;
+}

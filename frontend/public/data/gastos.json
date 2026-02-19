@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "ruc": "1712345678001",
+        "tipoGasto": "Salud",
+        "valor": 150.50,
+        "impuestoCalculado": 18.06
+    },
+    {
+        "id": 2,
+        "ruc": "1787654321001",
+        "tipoGasto": "Vivienda",
+        "valor": 1500.00,
+        "impuestoCalculado": 180.00
+    },
+    {
+        "id": 3,
+        "ruc": "1712345678001",
+        "tipoGasto": "Alimentación",
+        "valor": 250.75,
+        "impuestoCalculado": 30.09
+    },
+    {
+        "id": 4,
+        "ruc": "1799999999001",
+        "tipoGasto": "Educación",
+        "valor": 500.00,
+        "impuestoCalculado": 60.00
+    },
+    {
+        "id": 5,
+        "ruc": "1712345678001",
+        "tipoGasto": "Servicios Básicos",
+        "valor": 85.50,
+        "impuestoCalculado": 10.26
+    }
+]

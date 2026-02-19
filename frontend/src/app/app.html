@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<app-notification></app-notification>
+
+<app-menu></app-menu>
+
+
+<main class="main-wrapper">
+  <div class="content-animate">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer class="footer-modern">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h6 class="brand-title">
+          <i class="bi bi-calculator-fill text-warning"></i> 
+          <span>SRI</span>Calculadora
+        </h6>
+        <p>Tu aliado estratégico para la gestión de impuestos personales en Ecuador.</p>
+      </div>
+      
+      <div class="footer-features">
+        <div class="feature-tag"><i class="bi bi-shield-lock"></i> 100% Privado</div>
+        <div class="feature-tag"><i class="bi bi-cpu"></i> Cálculos en tiempo real</div>
+        <div class="feature-tag"><i class="bi bi-patch-check"></i> Formato SRI 2026</div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Calculadora SRI. Desarrollado con Angular & Bootstrap.</p>
+      <nav class="footer-links">
+        <a href="#">Privacidad</a>
+        <span class="sep">•</span>
+        <a href="#">Soporte</a>
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,102 @@
+﻿<div class="container-fluid" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem;">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden auth-card">
+        <div class="auth-header text-center text-white p-4">
+          <div class="auth-icon mx-auto mb-3">
+            <i class="bi bi-person-plus-fill"></i>
+          </div>
+          <h2 class="fw-bold mb-1">Crear Cuenta</h2>
+          <p class="mb-0 opacity-75">Registrate para comenzar a gestionar tus facturas</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5 bg-white">
+          <form (ngSubmit)="onRegister()" #registerForm="ngForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="username" class="form-label fw-semibold">Usuario</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                  <input
+                    id="username"
+                    name="username"
+                    [(ngModel)]="username"
+                    required
+                    class="form-control"
+                    autocomplete="username"
+                    placeholder="Tu usuario"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-semibold">Correo</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                  <input
+                    id="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    required
+                    type="email"
+                    class="form-control"
+                    autocomplete="email"
+                    placeholder="correo@ejemplo.com"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="cedulaOrRuc" class="form-label fw-semibold">Cedula o RUC</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+                  <input
+                    id="cedulaOrRuc"
+                    name="cedulaOrRuc"
+                    [(ngModel)]="cedulaOrRuc"
+                    required
+                    class="form-control"
+                    placeholder="10 o 13 digitos"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="password" class="form-label fw-semibold">Contrasena</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    [(ngModel)]="password"
+                    required
+                    class="form-control"
+                    autocomplete="new-password"
+                    placeholder="Minimo recomendado 8 caracteres"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 py-2 fw-semibold mt-4" [disabled]="registerLoading || registerForm.invalid">
+              <span *ngIf="registerLoading"><i class="bi bi-arrow-repeat spin me-2"></i>Registrando...</span>
+              <span *ngIf="!registerLoading">Registrarme</span>
+            </button>
+
+            <div *ngIf="registerLoading" class="alert alert-info mt-3 mb-0">
+              <i class="bi bi-hourglass-split me-2"></i>Procesando solicitud...
+            </div>
+            <div *ngIf="registerError" class="alert alert-danger mt-3 mb-0">{{registerError}}</div>
+            <div *ngIf="registerSuccess" class="alert alert-success mt-3 mb-0">{{registerSuccess}}</div>
+          </form>
+
+          <div class="text-center mt-4 pt-3 border-top">
+            <span class="text-muted">Ya tienes cuenta?</span>
+            <a routerLink="/login" class="fw-semibold text-decoration-none ms-1">Inicia sesion</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

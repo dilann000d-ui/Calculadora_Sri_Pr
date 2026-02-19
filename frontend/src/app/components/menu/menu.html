@@ -1,0 +1,52 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <div class="brand-icon me-2">
+        <i class="bi bi-calculator-fill"></i>
+      </div>
+      <div class="brand-text d-flex align-items-center gap-1">
+        <span class="brand-prefix">SRI</span>
+        <span class="brand-main">Calculadora</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navRes">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navRes">
+      <div class="navbar-nav ms-auto gap-3 d-flex align-items-center">
+        <span *ngIf="auth.isLoggedIn()" class="navbar-text me-3 text-white">Hola {{auth.getUser()?.username}}</span>
+        <a class="nav-link nav-btn-rounded" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="bi bi-house-door me-2"></i>Inicio
+        </a>
+        <a class="nav-link nav-btn-rounded" routerLink="/informacion" routerLinkActive="active">
+          <i class="bi bi-info-circle me-2"></i>Informacion
+        </a>
+        <a *ngIf="!auth.isLoggedIn()" class="nav-link nav-btn-rounded" routerLink="/register" routerLinkActive="active">
+          <i class="bi bi-file-earmark-plus me-2"></i>Registro
+        </a>
+        <a *ngIf="!auth.isLoggedIn()" class="nav-link nav-btn-rounded" routerLink="/login" routerLinkActive="active">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Login
+        </a>
+        <a *ngIf="auth.isLoggedIn() && !auth.isAdmin()" class="nav-link nav-btn-rounded" routerLink="/registro" routerLinkActive="active">
+          <i class="bi bi-file-earmark-plus me-2"></i>Registrar Factura
+        </a>
+        <a *ngIf="auth.isLoggedIn()" class="nav-link nav-btn-reporte" routerLink="/reporte">
+          <i class="bi bi-bar-chart-fill me-2"></i>Reporte
+        </a>
+
+        <button *ngIf="auth.isAdmin()" type="button" class="nav-link nav-btn-rounded" (click)="navigate('/admin-dashboard', $event)">
+          <i class="bi bi-bar-chart-line me-2"></i>Dashboard Admin
+        </button>
+        <button *ngIf="auth.isAdmin()" type="button" class="nav-link nav-btn-rounded" (click)="navigate('/admin-usuarios', $event)">
+          <i class="bi bi-people-fill me-2"></i>Gestion Usuarios
+        </button>
+
+        <a *ngIf="auth.isLoggedIn()" class="nav-link nav-btn-rounded text-danger" (click)="logout()">
+          <i class="bi bi-box-arrow-right me-2"></i>Salir
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,2 @@
+/* Estilos para admin-estadisticas (puedes personalizar con Tailwind) */
+.admin-section { @apply p-4; }

@@ -1,0 +1,143 @@
+/* Contenedor Principal - Header Profesional */
+.custom-navbar {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  transition: all 0.4s ease;
+  border-bottom: 3px solid #00d4ff;
+  margin: 0 !important;
+  z-index: 1030 !important;
+  will-change: transform;
+}
+
+.custom-navbar:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-spacer {
+  height: 75px; /* Altura del navbar para que no tape el contenido */
+}
+
+/* Branding */
+.brand-icon {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.brand-prefix {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #00d4ff;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-main {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  line-height: 1;
+}
+
+.fw-extrabold { font-weight: 800; }
+
+/* Items de Navegación Desktop */
+.nav-btn-rounded {
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.nav-btn-rounded:hover {
+  background: rgba(0, 212, 255, 0.2);
+  color: #00d4ff !important;
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.nav-btn-rounded.active {
+  background: rgba(0, 212, 255, 0.3);
+  color: #00d4ff !important;
+  border-color: #00d4ff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+/* Botón Especial de Reporte */
+.nav-btn-reporte {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  color: #1e3c72 !important;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+}
+
+.nav-btn-reporte:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+  background: linear-gradient(135deg, #00e5ff 0%, #00b3e5 100%);
+  color: #1e3c72 !important;
+}
+
+.nav-btn-reporte:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: #0f172a;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-item-modern {
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  .nav-btn-reporte {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+  }
+}
